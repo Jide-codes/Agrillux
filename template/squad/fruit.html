@@ -1,0 +1,26 @@
+{% extends 'squad/main.html' %}
+{% load  static %}
+{% block content %}
+<button style="background-color:#130780; border:none; border-radius:5px; margin:5px;"><a href="{% url 'livestock-market' %}" style="color:white; text-decoration:none; font-weight:400;">&larr; livestock store</a></button>
+
+<div class="container-fluid mt-5"><h2>Fruits/Vegetable fruits</h2></div>
+<div class="row">
+    {% for fruit in fruit_cat %}
+    <div class="col-lg-4">
+        <img class="thumbnail" src="{{fruit.ImageURL}}">
+        <div class="box-element product">
+            <h6><strong>{{fruit.name}}</strong></h6>
+            <hr>
+            <button data-product='{{fruit.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart ">Add to cart</button>
+            <a href="" class="btn btn-outline-success">View</a>
+            <h4 style="display:inline-block; float:right;">&#8358;{{fruit.price}}/kg</h4>
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+
+
+{% endblock content %}

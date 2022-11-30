@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmFresh</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    
+        <div class="main">
+    
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Order Items</h2>
+                        <a href="{% url 'store' %}" class="btn">&larr;Go Back</a>
+                            
+                        
+                        
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Products</td>
+                                <td>Price</td>
+                                <td>Order id</td>
+                                <td>Quantity</td>
+                                <td>Total</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td>{{order.product}}</td>
+                                <td>{{order.get_price}}</td>
+                                <td>{{order.order}}</td>
+                                <td>{{order.quantity}}</td>
+                                <td>{{order.get_total}}</td>
+                                <td><a href="" ><i style="color:yellow; font-size:24px;"class='bx bx-upload'></i></a>
+                                <a href="{% url 'delete_OrderItem' order.id %}" ><i style="color:red; font-size:24px;"class='bx bxs-trash'></i></a></td>
+
+                            </tr>
+                            {% empty %}
+                            <h3> No Order added yet <h3> 
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table>                    
+                </div>
+            </div>
+
+
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Shipping Details</h2>
+                        <a href="{% url 'store' %}" class="btn">&larr;Go Back</a>
+                        
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Customer</td>
+                                <td>Order id</td>
+                                <td>Address</td>
+                                <td>City</td>
+                                <td>State</td>
+                                {% comment %} <td>Zipcode</td> {% endcomment %}
+                                <td>Mobile</td>
+                                <td>Date_added</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for details in shippings %}
+                            <tr>
+                                <td>{{details.customer}}</td>
+                                <td>{{details.order}}</td>
+                                <td>{{details.address}}</td>
+                                <td>{{details.city}}</td>
+                                <td>{{details.state}}</td>
+                                {% comment %} <td>{{details.zipcode}}</td> {% endcomment %}
+                                <td>{{details.mobile}}</td>
+                                <td>{{details.date_added}}</td>
+                                <td><a href="{% url 'delete_shippingDetails' details.id %}" ><i style="color:red; font-size:24px;"class='bx bxs-trash'></i></a></td>
+
+                            </tr>
+                            {% empty %}
+                            <h3> No Shipping Details added yet <h3> 
+                            {% endfor %}
+                            
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+
+
+            
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

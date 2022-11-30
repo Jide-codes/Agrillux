@@ -1,0 +1,70 @@
+{% extends 'squad/main.html' %}
+{% load static %}
+{% block content %}
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<div style="width:100%; margin-left:0.65rem;">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="box-element">
+
+            <a class="btn btn-outline-dark" href="{% url 'livestock-market' %}">&#x2190; Continue Shopping</a>
+
+            <br>
+            <br>
+            <table class="table">
+                <tr>
+                    <th><h5>Items: <strong> {{order.get_cart_item}}</strong></h5></th>
+                    <th><h5>Total: <strong> &#8358;{{order.get_cart_total|floatformat:2}}</strong></h5></th>
+                    <th>
+                        <a  style="float:right; margin:5px;" class="btn btn-success" href="{% url 'checkout' %}">Checkout</a>
+                    </th>
+                </tr>
+            </table>
+            
+        </div>
+
+        <br>
+        <div class="box-element">
+            <div class="cart-row">
+                <div style="flex:2;"></div>
+                <div style="flex:2;"><strong>Items</strong></div>
+                <div style="flex:1;"><strong>Price</strong></div>
+                <div style="flex:1;"><strong>Quantity</strong></div>
+                <div style="flex:1;"><strong>Total </strong></div>
+            </div>
+            {% for item in items %}
+            <div class="cart-row">
+                <div style="flex:2;"><img class="row-image" src="{{item.product.ImageURL}}"></div>
+                <div style="flex:2;">{{item.product.name}}</div>
+                {% if item.product.discount %}
+                <div style="flex:1;">&#8358;{{item.product.get_discount_price}}</div> 
+                {% else %}
+                <div style="flex:1;">&#8358;{{item.product.price}}</div> 
+                {% endif %}
+                <div style="flex:1;">
+                    <p class="quantity">{{item.quantity}}</p>
+                    <div class="quantity">
+                        <img data-product={{item.product.id}} data-action="add" class="chg-quantity update-cart" src="{% static 'img/arrow-up.png' %}">
+
+                        <img data-product={{item.product.id}} data-action="remove" class="chg-quantity update-cart" src="{% static 'img/arrow-down.png' %}">
+                </div>
+            </div>
+
+                
+
+                <div style="flex:1;"><p>&#8358;{{item.get_total}}</p></div>
+                {% if user.is_authenticated %}
+                <a href="{% url 'remove-order' item.id %}"><i style="color:red; font-size:24px;"class='bx bxs-trash'></i></a>  
+                {% endif %}
+            </div>
+
+                
+                
+            
+            {% endfor %} 
+
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

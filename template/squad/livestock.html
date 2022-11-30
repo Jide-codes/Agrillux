@@ -1,0 +1,113 @@
+{% extends 'squad/main.html' %}
+{% load  static %}
+{% block content %}
+<link href="{% static 'css/styleshop.css' %}">
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+{% comment %} THIS THE POULTRY BIRDS STORE {% endcomment %}
+{% comment %} 
+<div class="search">
+    <form method="GET" action="">
+        <input class="input" type="text" name="search-area"/>
+        <input class="input1" type="submit" value="search"/>
+    </form> 
+</div>
+
+<div class="row">
+    {% for item in product %}
+    
+    <div class="col-lg-4" id= "box">
+        <img class="thumbnail" src="{{item.ImageURL}}"> 
+        <div class="box-element product">
+            <h6><strong>{{item.name}}</strong></h6>
+            <hr>
+            <button data-product='{{item.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+           <a href="{% url 'view-item' item.id %}" class="btn btn-success">View</a>
+            <h4 style="display:inline-block; float:right;">&#8358;{{item.price|floatformat:3}}</h4>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+         {% endcomment %}
+
+
+         
+
+          
+     
+          
+          
+       
+         
+
+         <section style="margin-top:-3rem;"class="py-5">
+            <div class="container px-4 px-lg-5 mt-5">
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                    {% for item in product %}
+    
+                    <div style="width:30%; height:22rem;"class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Sale badge-->
+                            {% if item.discount and user.is_authenticated %}
+
+                            
+                            <div class="badge bg-dark position-absolute" style="color:orange; top: 0.5rem; right: 0.5rem">Special Offer</div>
+                            
+                            {% endif %}
+                            <!-- Product image-->
+                            <img style="height:12rem;"class="card-img-top" src="{{item.ImageURL}}" alt="..." />
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{item.name}}</h5>
+                                    
+                                    <!-- Product price-->
+                                    {% if item.available <= '0' %}
+                                    <h6 style = "color:red; font-weight:500;">Out of stock</h6>  
+                                    {% elif user.is_authenticated %}
+                                    <h6>&#8358;{{item.get_discount_price}}</h6> 
+                                    {% else %}
+                                    <h6>&#8358;{{item.get_price}}</h6> 
+                                    {% endif %}
+
+
+                                   
+                                    
+                                    
+                                    
+                                   
+                                </div>
+                            </div>
+
+                            {% if item.available <= '0'  %}
+
+                            {% comment %} <div style="margin-top:-2rem; margin-left:1.5rem;"class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <button data-product='{{item.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                                <a href="{% url 'view-item' item.id %}" class="btn btn-success">View</a>
+                            </div> {% endcomment %}
+
+                            {% else %}
+                            <!-- Product actions-->
+                            <div style="margin-top:-2rem; margin-left:1.5rem;"class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <button data-product='{{item.id}}' data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                                <a href="{% url 'view-item' item.id %}" class="btn btn-success">View</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                        
+                    </div>
+                    {% empty %}
+                    <h1>Store is empty </h1>
+                    {% endfor %}
+
+
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock content %}
