@@ -108,6 +108,7 @@
            
                 {% if user.is_superuser %}
                 <a style="color:#fff; margin-top:0.56rem; font-weight:500; margin-left:2rem; font-size:20px;" class="nav-link active" aria-current="page" href="{% url 'store' %}">Inventory</a>
+               
                 {% elif user.is_authenticated %}
                 <p style="color:#fff; margin-top:1.5rem; font-weight:500; margin-left:2rem;">Hello,{{request.user|title}}</p>
                 {% endif %}
