@@ -139,6 +139,7 @@ def register(request):
 
 def feedback(request):
     message = CustomerFeedBack.objects.all()
+    # if message.paid == True:
     context = {
         'messages':message
     }
@@ -310,8 +311,3 @@ def ProcessOrder(request):
 
     # ECOMMERCE ENDS HERE
 
-
-
-
-   
-   

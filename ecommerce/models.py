@@ -129,7 +129,8 @@ class CustomerFeedBack(models.Model):
     email = models.EmailField(max_length=200, null=True, blank=True)
     comment = models.TextField(max_length=100000, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
-
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+

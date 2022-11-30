@@ -40,7 +40,7 @@ class CreateProduct(ModelForm):
 class CustomerComment(ModelForm):
   class Meta:
         model = CustomerFeedBack
-        fields = ['name','email','comment']
+        fields = ['name','email','comment','paid']
         labels = {
           'name': '',
           'email': '',

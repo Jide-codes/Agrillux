@@ -10,7 +10,7 @@
         {% csrf_token %}
         {{form.as_p}}
         <input type="submit" value="Send" class="btn btn-success btn-lg"></input>
-        <a href="{% url 'store' %}" class="btn btn-primary btn-lg">Go Back</a>
+        <a href="{% url 'livestock-market' %}" class="btn btn-primary btn-lg">Go Back</a>
         {% comment %} <a href="{% url 'st' %}" class="btn btn-primary btn-lg">Go Back</a> {% endcomment %}
     </form>
 </div>
