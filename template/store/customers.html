@@ -31,19 +31,27 @@
                             <tr>
                                 <td>Username</td>
                                 <td>Email</td>
+                                <td>Status</td>
                                 <td>Action</td>
+                                
+                                
                             </tr>
                         </thead>
 
                         <tbody>
                             {% for user in customers %}
                             <tr>
+                                
                                 <td>{{user.username}}</td>
                                 <td>{{user.email}}</td>
+                                {% if user.is_superuser %}
+                                <td>Admin</td>
+                                {% else %}
+                                <td>customer</td>
+                                {% endif %} 
                                 <td><a href="" ><i style="color:yellow; font-size:24px;"class='bx bx-upload'></i></a>
                                 <a href="" ><i style="color:red; font-size:24px;"class='bx bxs-trash'></i></a></td>
-
-                            </tr>
+                                </tr>
                             {% empty %}
                             <h3> No User added yet <h3> 
                             {% endfor %}
