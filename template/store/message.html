@@ -1,12 +1,16 @@
 
 {% for message in messages %}
-<div style="background-color:#fff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
-<a style="position:fixed; left:7rem;" href="mailto:{{message.email}}">Reply</a>
+<div style="background-color:#fff; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; width:40%; border-radius:10px; margin-left:25rem;">
+<div style="margin-left:30rem; margin-top:1rem; background-color: #130780; border-radius:5px; text-align:center;">
+<a style=" color:#fff; text-decoration:none;" href="mailto:{{message.email}}">Reply</a>
+</div>
+<div style="margin-top:-1rem; margin-left:1rem;">
 <h3>{{message.name}}</h3>
 <h5>{{message.email}}</h5>
 <h5>{{message.date_added}}</h5>
 <p style="font-family: san-serif;">{{message.comment}}</p>
+</div>
+</div>
 {% empty %}
 <h1>No message available</h1>
 {% endfor %}
-</div>
